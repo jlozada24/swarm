@@ -12,7 +12,21 @@ Resolve every child runtime coordinate independently:
 4. If the host cannot expose or honor the resolved model or effort, leave the coordinate `unresolved`, surface exact evidence, and wait for a user selection. Never silently substitute another runtime.
 5. If only speed cannot be enforced, surface the required nonblocking disclosure, record requested and resolved behavior, and continue with the approved model and effort.
 
-The parent orchestrator is already running and is not an assignable child coordinate. Show its actual runtime and the recommendation below, but never claim a matrix edit changed it retroactively. If the user requests another parent runtime and the host cannot switch and verify it in place, surface that a new parent session is required and apply the existing `obp` rule to the current one.
+The parent orchestrator is already running and is not an assignable child coordinate. Detect its host and evaluate its actual runtime using the parent-runtime eligibility rules below. Never claim a child-matrix edit changed the parent retroactively. If the user requests another parent runtime and the host cannot switch and verify it in place, surface that a new parent session is required; the current session still follows the eligibility and `obp` rules below.
+
+## Parent-runtime eligibility
+
+Select the normative parent recommendation from the detected host, not from a child selection or a cross-host model translation:
+
+| Detected host | Normative parent recommendation | Matching-or-stronger eligible runtime |
+|---|---|---|
+| Codex | Sol High+ | Sol at `high` or higher effort (or a verified stronger host runtime) |
+| Claude Code | Opus 5 XHigh or Fable 5 High | Opus 5 at `xhigh`, or Fable 5 at `high` (or a verified stronger host runtime) |
+| Cursor | Grok 4.6 XHigh | Grok 4.6 at `xhigh` (or a verified stronger host runtime) |
+
+Inspect and record the host-reported parent model and effort before deciding eligibility. A verified matching-or-stronger runtime continues without a bypass. For a below-recommendation parent, surface `actual: <model>, <effort>`; when the host cannot expose or verify the parent, surface `actual: unknown` together with the evidence of unavailability or unverifiability. In either case, issue the existing quality warning that orchestration, finding adjudication, merge control, and release gating may be weaker, then hard-pause before creating worktrees, spawning children, or changing repository state.
+
+The only bypass is a one-time `obp` acknowledgement: the immediately following user message, after trimming surrounding whitespace, must consist entirely of lowercase `obp`. Do not accept an `obp` in the invoking prompt, an earlier message, a quoted example, preauthorization, generic approval, or any longer response. If the next message is not exactly `obp`, reissue the warning and require a newly following exact `obp`; record the warning, acknowledgement, message order, and current-run scope. A child runtime selection never satisfies this gate, upgrades an ineligible parent, or changes the already-running parent.
 
 ## Dated role mappings
 
