@@ -1,6 +1,7 @@
 ---
 name: luna-swarm
 description: Orchestrate explicitly invoked, large repository implementation or review swarms. Implementation runs use collision-free waves, optional best-of-N slice builders, selectable isolated-worktree or verified zero-overlap same-worktree execution, optional single-role simple mode, gated review and repair, matrix-settled per-position runtimes, and a two-slot approval gate that can combine intake flags with flexible post-proposal acknowledgements. Review-only runs use one-file reviewer slices over one immutable shared snapshot with optional reviewer pools and no implementation changes. Do not use for small edits or ordinary analysis unless the user explicitly invokes this skill.
+disable-model-invocation: true
 ---
 
 # Luna Swarm
