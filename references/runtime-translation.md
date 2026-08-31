@@ -1,6 +1,6 @@
 # Runtime translation guide
 
-Read this file completely before resolving child runtimes or emitting any implementation or review matrix. This guide is version `2026-08-21`. Its mappings are operational role equivalents for Luna Swarm, not claims that models from different providers are identical.
+Read this file completely before resolving child runtimes or emitting any implementation or review matrix. This guide is version `2026-08-26`. Its mappings are operational role equivalents for Luna Swarm, not claims that models from different providers are identical.
 
 ## Resolution order
 
@@ -11,6 +11,8 @@ Resolve every child runtime coordinate independently:
 3. If the model is known but the user omitted effort or speed, apply the role-specific values below and record that they came from this guide.
 4. If the host cannot expose or honor the resolved model or effort, leave the coordinate `unresolved`, surface exact evidence, and wait for a user selection. Never silently substitute another runtime.
 5. If only speed cannot be enforced, surface the required nonblocking disclosure, record requested and resolved behavior, and continue with the approved model and effort.
+
+An entry in review-mode `review_agents` is not an explicit selection under step 1. It is an additional eligible pool, and the review-mode reference requires the orchestrator to retain the built-in Luna Max pool and choose a supplied option only when it is likely to improve the outcome for a concrete slice. A direct user instruction assigning a runtime to named coordinates or scope remains an explicit selection.
 
 The parent orchestrator is already running and is not an assignable child coordinate. Detect its host and evaluate its actual runtime using the parent-runtime eligibility rules below. Never claim a child-matrix edit changed the parent retroactively. If the user requests another parent runtime and the host cannot switch and verify it in place, surface that a new parent session is required; the current session still follows the two-slot approval rules below.
 
