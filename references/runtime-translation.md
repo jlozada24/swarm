@@ -8,9 +8,8 @@ Resolve every child runtime coordinate independently:
 
 1. Use an explicit user selection for the exact coordinate or explicitly named set of coordinates.
 2. Otherwise use the canonical roster default on Codex or the dated host-native mapping below on Claude Code or Cursor.
-3. If the model is known but the user omitted effort or speed, apply the role-specific values below and record that they came from this guide.
+3. If the model is known but the user omitted effort, apply the role-specific value below and record that it came from this guide.
 4. If the host cannot expose or honor the resolved model or effort, leave the coordinate `unresolved`, surface exact evidence, and wait for a user selection. Never silently substitute another runtime.
-5. If only speed cannot be enforced, surface the required nonblocking disclosure, record requested and resolved behavior, and continue with the approved model and effort.
 
 An entry in review-mode `review_agents` is not an explicit selection under step 1. It is an additional eligible pool, and the review-mode reference requires the orchestrator to retain the built-in Luna Max pool and choose a supplied option only when it is likely to improve the outcome for a concrete slice. A direct user instruction assigning a runtime to named coordinates or scope remains an explicit selection.
 
@@ -34,11 +33,11 @@ The required bypass is one approval slot, not an exact-token checkpoint. A user-
 
 | Responsibility | Codex baseline | Claude Code | Cursor native |
 |---|---|---|---|
-| Bounded builder | Luna Max (`gpt-5.6-luna`, `max`) | Sonnet 5 (`claude-sonnet-5`, `high`) | Composer 2.5 Standard (`composer-2.5`, adaptive effort, non-fast); Grok 4.6 (`grok-4.6`, `medium`, non-fast) when explicitly selected |
-| File-level adversarial, overengineering, style, post-fix, or non-escalated remediation reviewer | Luna Max (`gpt-5.6-luna`, `max`) | Opus 5 (`claude-opus-5`, `medium`) | Grok 4.6 (`grok-4.6`, `high`, non-fast) |
-| Ordinary fixer or non-escalated remediation fixer | Luna Max (`gpt-5.6-luna`, `max`) | Sonnet 5 (`claude-sonnet-5`, `high`) | Composer 2.5 Standard (`composer-2.5`, adaptive effort, non-fast) |
-| Strong or escalated builder | Sol High (`gpt-5.6-sol`, `high`) | Opus 5 (`claude-opus-5`, `high`) | Grok 4.6 (`grok-4.6`, `high`, non-fast) |
-| Escalated reviewer/fixer or integrated/final reviewer | Sol XHigh (`gpt-5.6-sol`, `xhigh`) | Opus 5 (`claude-opus-5`, `xhigh`) | Grok 4.6 (`grok-4.6`, `xhigh`, non-fast) |
+| Bounded builder | Luna Max (`gpt-5.6-luna`, `max`) | Sonnet 5 (`claude-sonnet-5`, `high`) | Composer 2.5 Standard (`composer-2.5`, adaptive effort); Grok 4.6 (`grok-4.6`, `medium`) when explicitly selected |
+| File-level adversarial, overengineering, style, post-fix, or non-escalated remediation reviewer | Luna Max (`gpt-5.6-luna`, `max`) | Opus 5 (`claude-opus-5`, `medium`) | Grok 4.6 (`grok-4.6`, `high`) |
+| Ordinary fixer or non-escalated remediation fixer | Luna Max (`gpt-5.6-luna`, `max`) | Sonnet 5 (`claude-sonnet-5`, `high`) | Composer 2.5 Standard (`composer-2.5`, adaptive effort) |
+| Strong or escalated builder | Sol High (`gpt-5.6-sol`, `high`) | Opus 5 (`claude-opus-5`, `high`) | Grok 4.6 (`grok-4.6`, `high`) |
+| Escalated reviewer/fixer or integrated/final reviewer | Sol XHigh (`gpt-5.6-sol`, `xhigh`) | Opus 5 (`claude-opus-5`, `xhigh`) | Grok 4.6 (`grok-4.6`, `xhigh`) |
 | Parent orchestrator recommendation | Sol High or higher | Opus 5 XHigh or Fable 5 High | Grok 4.6 XHigh |
 
 For Cursor-native bounded work, prefer Composer 2.5 Standard by default. Grok 4.6 Medium is an explicitly selectable, overqualified bounded-work alternative rather than evidence that Grok belongs to Luna's model tier. For Cursor-native difficult building, adjudication, or integrated review, use the Grok High or XHigh mappings shown above.
@@ -51,7 +50,7 @@ Every runtime coordinate must record:
 - canonical roster default;
 - detected host;
 - raw user request, if any;
-- resolved model, effort, and requested/resolved speed behavior;
+- resolved model and effort;
 - selection source: `roster_default`, `translation_guide`, or `user_selected`;
 - translation class: `exact`, `vetted_role_equivalent`, `user_selected_nondefault`, or `unresolved`;
 - this guide version.
