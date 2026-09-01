@@ -20,7 +20,7 @@ followup_roles_allowed: false
 
 - Record requested and resolved values. If the invocation explicitly supplied `simple_mode: false`, surface that review mode resolved it to `true`; do not reject or silently conceal the resolution.
 - `worktree_mode` is an implementation-only control. Record any requested value and resolve it to `not_applicable(review_mode)`. Never create per-slice implementation worktrees. The only reviewer-specific worktree permitted is the disposable verification worktree required below when that reviewer must run an approved command that can write files.
-- `best_of_n` is an implementation-only control. Record any requested valid value and resolve it to `not_applicable(review_mode)`; review mode never creates builder candidates.
+- `best_of_n` is an implementation-only control. Validate and record any requested scalar or normalized scoped policy, then resolve it to `not_applicable(review_mode)`; review mode never classifies slices for builder counts or creates builder candidates.
 - `slice_adversarial_review` and `wave_integrated_review` are full-implementation controls. Record any requested boolean values and resolve both to `not_applicable(review_mode)`. The former does not disable review mode's own required one-file adversarial pass, and review mode never creates an integrated wave reviewer.
 - `pipeline_waves` is an implementation-only control. Record any requested boolean value and resolve it to `not_applicable(review_mode)`.
 - Reject `review_mode: true` with `overengineering_review: true` or `style_review: true`. Review mode performs one bounded adversarial review pass per slice rather than additional reviewer layers.
