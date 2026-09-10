@@ -42,7 +42,7 @@ The required bypass is one approval slot, not an exact-token checkpoint. A user-
 
 ## Matrix recording
 
-Every coordinate records its stable identity, mapped grid role, selected level, role/level baseline, shared policy and routing source paths and fingerprints, detected host, raw user request, resolved model and exact effort, configured route, exact tag/slug and invocation surface, route verification status/evidence, required capacity and verification evidence, assignment source, and this guide version.
+Every coordinate records its stable identity, mapped grid role, selected level, role/level baseline, shared policy and routing source paths and fingerprints, detected host, raw user request, resolved model and exact effort, configured route, exact tag/slug and invocation surface, route-required controls such as Fast, route verification status/evidence, required capacity and verification evidence, assignment source, and this guide version.
 
 `selection_source` is `grid_baseline`, `eligible_option`, or `user_selected`; `assignment_source` separately identifies a role default, pool, or direct coordinate assignment. Translation class is `exact` when model/effort equal the baseline, `user_selected_nondefault` for a selected additional option or explicit override differing from it, or `unresolved`. There are no implicit cross-provider role equivalents. A matrix cannot execute with unresolved identity, effort, required route, or required capacity.
 

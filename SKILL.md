@@ -195,7 +195,7 @@ Builders own discovery, implementation, and validation end to end, so they use T
 - A role-, slice-, or wave-scoped runtime request for the initial builder applies to every affected best-of-N candidate unless the user explicitly targets individual builder coordinates. Candidate count and best-of-N classification do not change runtime selection rules unless the user explicitly uses runtime as a best-of-N predicate.
 - Retry counting, role changes, and the escalation boundary remain mandatory. Each ordinary retry and escalation role uses its own matrix-approved coordinate using the selected role/level baseline unless explicitly overridden. A retry never automatically selects Peak or raises effort.
 
-All child coordinates inherit the parent or launcher's default speed behavior; do not preflight, record, or separately approve speed.
+When the shared route specifies a Fast or speed parameter, preserve it exactly and record it with the route; do not infer it from effort or change it to a launcher default. Otherwise inherit the parent or launcher's default speed behavior. Do not introduce a separate speed approval gate.
 
 ## Protect child context
 
