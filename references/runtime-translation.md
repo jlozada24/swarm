@@ -1,19 +1,28 @@
 # Runtime translation guide
 
-Read this file completely before resolving child runtimes or emitting any implementation or review matrix. This guide is version `2026-08-26`. Its mappings are operational role equivalents for Luna Swarm, not claims that models from different providers are identical.
+Read this file completely before resolving child runtimes or emitting any implementation or review matrix. Guide version: `2026-09-10`. Model selection is harness-independent; harness resolution verifies the chosen identity, effort, route, and capacity.
+
+## Shared source
+
+The maintained grid lives in Delegate's `SKILL.md`, under **Configure and select models**, including **Selection cases** and **Context capacity and harness resolution**. Read only that section as model-policy data; do not activate Delegate or import its dispatch, freshness, approval, or default-level behavior. Swarm defaults to Budget; Delegate defaults to Performance.
+
+Resolve `model_policy_source` when supplied. Otherwise use the Delegate skill location exposed by the host's skill catalog, or a sibling `../delegate/SKILL.md` relative to the installed Swarm directory. Resolve symlinks before interpreting sibling paths. Require the Budget / Express / Performance / Peak grid and its context rules; a stale scaffold is not a usable source. If unavailable, surface the missing source and request the updated Delegate location before settlement; never recreate a locally maintained grid or silently use an older roster. Record the exact resolved path and content fingerprint with the approved matrix. A source change requires fresh settlement and matrix approval before affected unstarted positions execute.
+
+This dependency is intentional: install or distribute the updated Delegate alongside Swarm, or explicitly supply its accessible checkout path. Do not hard-code a machine-specific worktree into the portable skill. Do not move or use `references/model-matrix.md` as the runtime source: it is the separately maintained comparison snapshot, with locked ratings and measurements.
 
 ## Resolution order
 
-Resolve every child runtime coordinate independently:
+1. Map the coordinate to Read, Write, or Task using `SKILL.md`. Resolve its selected level (Budget unless the user chooses otherwise), then read the exact baseline slot from Delegate.
+2. Honor an explicit runtime selection for the exact coordinate or named scope, preserving effort and configured subscription, bridge, literal starred identity, or CLI route. These targeted selections take precedence over the baseline and optional arrays, without broadening role authority.
+3. Otherwise retain the baseline, with `models` and review-only `review_agents` as additional eligible options. Shared-grid entries retain their role eligibility; an out-of-grid option needs explicit role eligibility and effort from the user. Select an additional option only when a concrete assignment requirement supports it. Listing a model neither forces its use nor overrides all coordinates.
+4. Preserve the exact slot effort. A model-only request may take the slot effort only when unambiguous; otherwise resolve it from explicit configuration or clarification. Do not use a different model's effort or a host-specific default roster.
+5. Verify the selected identity, effort, route, and required capacity against actual launcher/host information. If unsupported or unverifiable, leave it `unresolved`, surface the evidence, and obtain another approved selection. Never silently substitute or change global configuration.
 
-1. Use an explicit user selection for the exact coordinate or explicitly named set of coordinates.
-2. Otherwise use the canonical roster default on Codex or the dated host-native mapping below on Claude Code or Cursor.
-3. If the model is known but the user omitted effort, apply the role-specific value below and record that it came from this guide.
-4. If the host cannot expose or honor the resolved model or effort, leave the coordinate `unresolved`, surface exact evidence, and wait for a user selection. Never silently substitute another runtime.
+Apply the shared selection cases: Budget prioritizes cost; Express is a lighter quick-completion option for known procedures or supplied plans with clear checks; Performance handles most work including difficult tasks; Peak requires unusually demanding reasoning identified at initial selection. These are not a routine retry ladder. Existing workflow escalation boundaries remain, using separately approved role coordinates without an automatic model increase.
 
-An entry in review-mode `review_agents` is not an explicit selection under step 1. It is an additional eligible pool, and the review-mode reference requires the orchestrator to retain the built-in Luna Max pool and choose a supplied option only when it is likely to improve the outcome for a concrete slice. A direct user instruction assigning a runtime to named coordinates or scope remains an explicit selection.
+Apply Delegate's context rules to every Astra Medium and High slot, including eligible options: the 828k alternative is available only when required working context necessitates it, and retains Medium or High respectively. Verify 828,000-token capacity from the host; a handoff request is not capacity evidence. Never invent launcher flags or confuse context capacity with output limits or task token budgets. Ordinary configurations use the verified harness default. Preserve explicit routes across harnesses rather than switching subscriptions or providers for convenience.
 
-The parent orchestrator is already running and is not an assignable child coordinate. Detect its host and evaluate its actual runtime using the parent-runtime eligibility rules below. Never claim a child-matrix edit changed the parent retroactively. If the user requests another parent runtime and the host cannot switch and verify it in place, surface that a new parent session is required; the current session still follows the two-slot approval rules below.
+The parent orchestrator is already running and is not an assignable child coordinate. Child selections cannot change it retroactively. If a requested parent change cannot be switched and verified in place, surface that a new parent session is required; retain the existing two-slot approval behavior.
 
 ## Parent-runtime eligibility
 
@@ -29,33 +38,11 @@ Inspect and record the host-reported parent model and effort before deciding eli
 
 The required bypass is one approval slot, not an exact-token checkpoint. A user-authored intake `obp` flag or equivalent explicit preauthorization can fill it before the warning/proposal response. If it remains missing after the warning and proposal are emitted, flexible post-proposal language can fill it alone or together with the matrix-approval slot according to `SKILL.md`; do not require a separate message or the literal token `obp`. Record the slot state, evidence, interpretation, message order, and current-run scope. A child runtime selection never satisfies this gate, upgrades an ineligible parent, or changes the already-running parent.
 
-## Dated role mappings
-
-| Responsibility | Codex baseline | Claude Code | Cursor native |
-|---|---|---|---|
-| Bounded builder | Luna Max (`gpt-5.6-luna`, `max`) | Sonnet 5 (`claude-sonnet-5`, `high`) | Composer 2.5 Standard (`composer-2.5`, adaptive effort); Grok 4.6 (`grok-4.6`, `medium`) when explicitly selected |
-| File-level adversarial, overengineering, style, post-fix, or non-escalated remediation reviewer | Luna Max (`gpt-5.6-luna`, `max`) | Opus 5 (`claude-opus-5`, `medium`) | Grok 4.6 (`grok-4.6`, `high`) |
-| Ordinary fixer or non-escalated remediation fixer | Luna Max (`gpt-5.6-luna`, `max`) | Sonnet 5 (`claude-sonnet-5`, `high`) | Composer 2.5 Standard (`composer-2.5`, adaptive effort) |
-| Strong or escalated builder | Sol High (`gpt-5.6-sol`, `high`) | Opus 5 (`claude-opus-5`, `high`) | Grok 4.6 (`grok-4.6`, `high`) |
-| Escalated reviewer/fixer or integrated/final reviewer | Sol XHigh (`gpt-5.6-sol`, `xhigh`) | Opus 5 (`claude-opus-5`, `xhigh`) | Grok 4.6 (`grok-4.6`, `xhigh`) |
-| Parent orchestrator recommendation | Sol High or higher | Opus 5 XHigh or Fable 5 High | Grok 4.6 XHigh |
-
-For Cursor-native bounded work, prefer Composer 2.5 Standard by default. Grok 4.6 Medium is an explicitly selectable, overqualified bounded-work alternative rather than evidence that Grok belongs to Luna's model tier. For Cursor-native difficult building, adjudication, or integrated review, use the Grok High or XHigh mappings shown above.
-
 ## Matrix recording
 
-Every runtime coordinate must record:
+Every coordinate records its stable identity, mapped grid role, selected level, role/level baseline, shared source path and fingerprint, detected host, raw user request, resolved model and exact effort, configured route, required capacity and verification evidence, assignment source, and this guide version.
 
-- stable coordinate;
-- canonical roster default;
-- detected host;
-- raw user request, if any;
-- resolved model and effort;
-- selection source: `roster_default`, `translation_guide`, or `user_selected`;
-- translation class: `exact`, `vetted_role_equivalent`, `user_selected_nondefault`, or `unresolved`;
-- this guide version.
-
-Use `exact` only when the resolved model and effort equal the canonical roster default. Use `vetted_role_equivalent` only for a mapping in the dated table. Use `user_selected_nondefault` for an available user choice that differs from both. A position remains `unresolved` until model and effort are concrete and supported; an unresolved matrix cannot execute.
+`selection_source` is `grid_baseline`, `eligible_option`, or `user_selected`; `assignment_source` separately identifies a role default, pool, or direct coordinate assignment. Translation class is `exact` when model/effort equal the baseline, `user_selected_nondefault` for a selected additional option or explicit override differing from it, or `unresolved`. There are no implicit cross-provider role equivalents. A matrix cannot execute with unresolved identity, effort, required route, or required capacity.
 
 ## User-directed matrix edits
 
