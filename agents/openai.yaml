@@ -1,7 +1,7 @@
 interface:
-  display_name: "Luna Swarm"
+  display_name: "Swarm"
   short_description: "Configurable repository implementation and review swarms"
-  default_prompt: "Use $luna-swarm to run this repository implementation or review with the appropriate execution mode."
+  default_prompt: "Use $swarm to run this repository implementation or review with the appropriate execution mode."
 
 policy:
   allow_implicit_invocation: false
