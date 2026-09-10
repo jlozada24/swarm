@@ -41,7 +41,7 @@ Resolve the operating flags below before runtime settlement and the approval slo
 
 - `level: Budget | Express | Performance | Peak`; default to `Budget`. Accept case-insensitive values and normalize to these names; the user's “cost” choice means Budget. The selected column supplies each role's baseline from the shared Delegate grid. Clear user direction may choose a different level for named roles or coordinates; record the scoped choice. Do not infer Peak from a retry.
 - `models: ["model name", "another model name"]`; optional additional eligible choices, default `[]`. Quote multiword entries. This array augments the selected baseline, never replaces it or requires every supplied model to be used. Resolve each entry's role eligibility, exact effort, route, and capacity before selecting it. Non-list or ambiguous entries must be resolved before matrix approval.
-- `model_policy_source: <path to Delegate SKILL.md>`; optional explicit source location. Otherwise discover Delegate as described in [references/runtime-translation.md](references/runtime-translation.md). Record the resolved source and content fingerprint; importing its model policy does not activate Delegate's workflow.
+- `model_policy_source: <path to Delegate SKILL.md>`; optional explicit source location. Otherwise discover Delegate as described in [references/runtime-translation.md](references/runtime-translation.md). Record the resolved source plus its linked routing source and their content fingerprints; importing its model policy does not activate Delegate's workflow.
 
 - `review_mode: true | false`; default to `false`.
   - `false`: use the implementation workflow in this file.
