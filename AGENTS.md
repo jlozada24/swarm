@@ -1,3 +1,3 @@
 # Agent rules
 
-Do not add, run, or update tests unless the user explicitly requests tests.
+Test behavior follows the task, matrix allowlists, repository instructions, and explicit negative constraints. Swarm does not impose a separate default test policy.
